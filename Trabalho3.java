@@ -4,19 +4,23 @@ import java.io.*;
 public class Trabalho3 {
 	static class Art {	
 		String compartimento;
-		int numeroVezes;
 		String musica;	
 		String artista;
 	}
 
-	static final int TAMANHO = 12;
 	static final String NOME_ARQUIVO = "numeroVezes.txt";
 	static BufferedWriter arquivo = null;
 	static BufferedReader leitura;
+
+	static final int TAMANHO = 12;
 	static Art[] art = new Art[TAMANHO];
+
 	static String mensagem;
 	static String musicaMaisTocada;
 	
+//  1) (PROCEDIMENTO e passagem de parâmetro por REFERÊNCIA) Solicite ao usuário o número
+//	de vezes que a música foi pedida(TOCADA), a mensagem que aparece para o usuário deve
+//	seguir o seguinte modelo:
 	public static void initialize() {
 		for(int i = 0; i < TAMANHO; i++) {
 			art[i] = new Art();
@@ -35,20 +39,13 @@ public class Trabalho3 {
 		art[10].compartimento = "402";	art[10].musica = "Breezeblocks";	art[10].artista = "alt-J";
 		art[11].compartimento = "403";	art[11].musica = "Intro";			art[11].artista = "alt-J";
 
-	}
-	
-	
-//  1) (PROCEDIMENTO e passagem de parâmetro por REFERÊNCIA) Solicite ao usuário o número
-//	de vezes que a música foi pedida(TOCADA), a mensagem que aparece para o usuário deve
-//	seguir o seguinte modelo: 
-	public static void questao1() {
 		try{
 			arquivo = new BufferedWriter(new FileWriter(new File(NOME_ARQUIVO)));
 		
-			String quantidade;
+			String atual;
 			for(int i = 0; i<TAMANHO; i++) {
-				quantidade = JOptionPane.showInputDialog("Insira o número de vezes que a música " + art[i].musica + " do artista " + art[i].artista + " foi pedida.");
-				arquivo.write(quantidade);
+				atual = JOptionPane.showInputDialog("Insira o número de vezes que a música " + art[i].musica + " do artista " + art[i].artista + " foi pedida.");
+				arquivo.write(atual);
 				arquivo.newLine();
 			}
 
@@ -224,11 +221,6 @@ public class Trabalho3 {
 			fim--;
 		}while(flag == false);
 
-		// APAGA ESSA PORRA
-		for(int i = 0; i < TAMANHO; i++) {
-			System.out.println(repeticoes[i] + "\t" + valores[i].musica);
-		}
-
 		int n = 1;
 		for(int i = 11; i > 1; i--) {
 			mensagem += "\n" + n + ". " + valores[i].musica;
@@ -257,8 +249,7 @@ public class Trabalho3 {
 			JOptionPane.showMessageDialog(null, "Desculpe, não foi possível abrir o arquivo para a leitura.");
 		}
 
-		JOptionPane.showMessageDialog(null, counter + " músicas tocaram mais que a média de "
-									+ media + " repetições por música.");
+		JOptionPane.showMessageDialog(null, counter + " músicas tocaram mais que a média de " + media + " repetições por música.");
 	}
 
 //	9) (FUNÇÃO e passagem de parâmetro por VALOR) Solicite que o usuário informe o nome de
@@ -315,8 +306,6 @@ public class Trabalho3 {
 
 	public static void main(String[] args) {
 		initialize();
-
-		questao1();
 
 		int choice = 0;
 		do {
